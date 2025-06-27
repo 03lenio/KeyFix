@@ -34,10 +34,16 @@ def register_issues():
             listener.stop()
     keys_as_string = ""
     for key in pressed_keys:
-        try:
-            keys_as_string += key.char + ","
-        except AttributeError:
-            keys_as_string += str(key).replace("Key.", "") + ","
+        print(key)
+        if key is not None:
+            try:
+                try:
+                    keys_as_string += key.char + ","
+                except AttributeError:
+                    keys_as_string += str(key).replace("Key.", "") + ","
+            except TypeError:
+                keys_as_string += " " + ","
+
     print(f"\nThanks! The keys that actually were fired seem to be: {keys_as_string}")
     flush_input()
     confirm = input("Do you want to rebind this key/combination to a different input? [y/n]\n> ")
@@ -53,9 +59,12 @@ def rebind_keys(keys: set):
     keys_config_format = ""
     for key in pressed_keys:
         try:
-            keys_as_string += key.char + "+"
-        except AttributeError:
-            keys_as_string += str(key).replace("Key.", "") + "+"
+            try:
+                keys_as_string += key.char + "+"
+            except AttributeError:
+                keys_as_string += str(key).replace("Key.", "") + "+"
+        except TypeError:
+            keys_as_string += " " + "+"
     keys_as_string = keys_as_string.strip("+")
     flush_input()
     target_key = input("Please enter the key that should be fired instead in plain text\n")
@@ -80,23 +89,15 @@ def rebind_keys(keys: set):
 
 def on_press(key):
     pressed_keys.add(key)
-    combo = {keyboard.Key.ctrl_l, keyboard.KeyCode.from_char('c')}
-
-    # Example: detect Ctrl + C
-    if combo.issubset(pressed_keys):
-        print("Detected: Ctrl + C")
-
-    try:
-        print(f"\nKey pressed: {key.char}")
-    except AttributeError:
-        print(f"\nSpecial key pressed: {key}")
     print(pressed_keys)
+    if key is not None:
+        try:
+            print(f"\nKey pressed: {key.char}")
+        except AttributeError:
+            print(f"\nSpecial key pressed: {key}")
 
 
 def on_release(key):
-    if key in pressed_keys:
-        pressed_keys.remove(key)
-
     if key == keyboard.Key.esc:
         print("Exiting...")
         return False
