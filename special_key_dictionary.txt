@@ -1,5 +1,5 @@
 "enter": Enter key
-"space": Space key
+" ": Space key
 "tab": Tabulator Key
 "backspace": Backspace (Delete) Key
 "esc": Escape Key
