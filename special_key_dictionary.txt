@@ -1,0 +1,22 @@
+"enter": Enter key
+"space": Space key
+"tab": Tabulator Key
+"backspace": Backspace (Delete) Key
+"esc": Escape Key
+"shift": Shift Key
+"ctrl_left": Control (Left) Key
+"ctrl_right": Control (Right) Key
+"alt_l": Alternate (Left) Key
+"alt_r": Alternate (Right) Key
+"alt_gr": Alternate Graphic (Right) Key
+"delete": Deletion Key
+"left": Left Arrow Key
+"right": Right Arrow Key
+"up": Up Arrow Key
+"down": Down Arrow Key
+"caps_lock": Caps Lock Key
+"cmd": Command Key
+"home": Home Key
+"end": End Key
+"page_up": Page Up Key
+"page_down": Page Down Key
